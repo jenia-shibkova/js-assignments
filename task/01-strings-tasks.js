@@ -227,28 +227,29 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-    const length = alphabet.length;
-    let index = x => alphabet.indexOf(x);
-    let newStr = str;
-    for (let i = 0; i < newStr.length; i++) {
-      let symbol = index(newStr[i]);
-      if (newStr[i] === ' ' || newStr[i] === '?' || newStr[i] === '!') {
-          continue;
-      }
-      if (newStr[i] === newStr[i].toUpperCase()) {
-        newStr = newStr.replace(newStr[i], alphabet[symbol - 13]);
-        continue;
-      }
-      if (symbol + 13 < length) {
-         newStr = newStr.replace(newStr[i], alphabet[symbol + 13]);
-      } else {
-         newStr = newStr.replace(newStr[i], alphabet[symbol - 13]);
-      }
-    }
-
-    return newStr;
+  // const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  //   const length = alphabet.length;
+  //   let index = x => alphabet.indexOf(x);
+  //   let newStr = str;
+  //   for (let i = 0; i < newStr.length; i++) {
+  //     let symbol = index(newStr[i]);
+  //     if (newStr[i] === ' ' || newStr[i] === '?' || newStr[i] === '!') {
+  //         continue;
+  //     }
+  //     if (newStr[i] === newStr[i].toUpperCase()) {
+  //       newStr = newStr.replace(newStr[i], alphabet[symbol - 13]);
+  //       continue;
+  //     }
+  //     if (symbol + 13 < length) {
+  //        newStr = newStr.replace(newStr[i], alphabet[symbol + 13]);
+  //     } else {
+  //        newStr = newStr.replace(newStr[i], alphabet[symbol - 13]);
+  //     }
+  //   }
+  //
+  //   return newStr;
     // partial solution  TO DO!
+    throw new Error('Not implemented');
 }
 
 /**
