@@ -22,7 +22,7 @@
  *   5, 5  => 25
  */
 function getRectangleArea(width, height) {
-    throw new Error('Not implemented');
+    return width * height;
 }
 
 
@@ -38,7 +38,7 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCicleCircumference(radius) {
-    throw new Error('Not implemented');
+    return 2 * Math.PI * radius;
 }
 
 /**
@@ -54,7 +54,18 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    throw new Error('Not implemented');
+  if (value2 < 0 || value2 < -10000) {
+    if (value2 < 0) {
+      return ((value1 - value2 * -1) / 2 + value2) * - 1;
+    }
+  } else {
+    if (value1 > value2) {
+      return (value1 - value2) / 2 + value2;
+    } else {
+      return (value2 - (value1)) / 2 + value1;
+    }
+  }
+
 }
 
 /**
@@ -73,7 +84,10 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-    throw new Error('Not implemented');
+  const distanceX = (x1 - Math.abs(x2)) ** 2;
+  const distanceY = (Math.abs(y1) - Math.abs(y2)) ** 2;
+  const distanceTotal = Math.sqrt(distanceX + distanceY);
+  return distanceTotal;
 }
 
 /**
@@ -89,7 +103,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-    throw new Error('Not implemented');
+    return b === 0 ? 0 : -b / a;
 }
 
 
@@ -111,7 +125,12 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-    throw new Error('Not implemented');
+    // const vectorProduct = x1 * Math.abs(y1) + Math.abs(x2) * Math.abs(y2);
+    // const moduleA = Math.sqrt(x1 **2 + (Math.abs(y1)**2));
+    // const moduleB = Math.sqrt(Math.abs(x2)**2 + (Math.abs(y2)**2));
+    // const angle = vectorProduct / (moduleA * moduleB);
+    // return angle;
+    throw new Error('Not implemented'); // TO DO!
 }
 
 /**
@@ -127,7 +146,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    throw new Error('Not implemented');
+    return String(value).slice(-1);
 }
 
 
@@ -143,7 +162,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-    throw new Error('Not implemented');
+    return +value;
 }
 
 /**
@@ -160,7 +179,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    throw new Error('Not implemented');
+    return Math.sqrt(a**2 + b**2 + c**2);
 }
 
 /**
@@ -169,7 +188,7 @@ function getParallelipidedDiagonal(a,b,c) {
  * @param {number} num
  * @param {number} pow
  * @return {number}
- *  
+ *
  * @example:
  *   1234, 0  => 1234
  *   1234, 1  => 1230
@@ -181,7 +200,7 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    throw new Error('Not implemented');
+    return Math.round(num / (10 ** pow)) * (10 ** pow);
 }
 
 /**
@@ -190,7 +209,7 @@ function roundToPowerOfTen(num, pow) {
  *
  * @param {number} n
  * @return {bool}
- * 
+ *
  * @example:
  *   4 => false
  *   5 => true
@@ -202,7 +221,14 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-    throw new Error('Not implemented');
+    let prime = n !== 1;
+    for (let i = 2; i < n; i++) {
+        if (n % i === 0) {
+            prime = false;
+            break;
+        }
+    }
+    return prime;
 }
 
 /**
@@ -221,7 +247,18 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented');
+    if (typeof value === 'object') {
+      let a = value;
+      let b = Number(a);
+      return typeof b === 'number' ? b : def;
+    }
+    if (value === undefined || isNaN(Number(value))) {
+      return def;
+    }
+    if (typeof value === 'number') {
+      return value;
+    }
+    return typeof +value === 'number' ? +value : def;
 }
 
 module.exports = {
