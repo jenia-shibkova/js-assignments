@@ -22,7 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   throw new Error('Not implemented');
+   return new Date(value);
 }
 
 /**
@@ -37,7 +37,7 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   throw new Error('Not implemented');
+   return Date.parse(value);
 }
 
 
@@ -56,7 +56,8 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   throw new Error('Not implemented');
+  const year = date.getFullYear();
+  return new Date(year, 1, 29).getDate() === 29;
 }
 
 
@@ -76,14 +77,29 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+  const diffDays = endDate - startDate;
+  function msToTime(duration) {
+      let milliseconds = (duration%1000)
+          , seconds = parseInt((duration/1000)%60)
+          , minutes = parseInt((duration/(1000*60))%60)
+          , hours = parseInt((duration/(1000*60*60))%24);
+
+      hours = (hours < 10) ? "0" + hours : hours;
+      minutes = (minutes < 10) ? "0" + minutes : minutes;
+      seconds = (seconds < 10) ? "0" + seconds : seconds;
+      milliseconds = (milliseconds < 10) ? "00" + milliseconds : milliseconds;
+
+      return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  }
+
+  return msToTime(diffDays);
 }
 
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
  * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
- * 
+ *
  * @param {date} date
  * @return {number}
  *
